@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 320px;
+        }
+        .div{
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            width: 550px;
+            text-align: center;
+            box-shadow:0 10px 29px;
+        }
+        input,button{
+            width: 100%;
+            padding: 15px;
+            margin-top: 17px;
+            font-size: 20px;
+        }
+         button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            
+        }
+        button:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="div">
+    <p>Checking Student Result</p>
+    <input id="input1" type="text" placeholder="Enter Student Name">
+    <input id="input2" type="text" placeholder="Enter Student Marks">
+    <button id="button"> Click Here</button>
+    <div id="result"></div>
+    </div>
+    <script>
+    const nameInput = document.getElementById("nameInput");
+    const Marks = document.getElementById("MarksInput");
+    const checkBtn = document.getElementById("button");
+    const result = document.getElementById("result");
+    //checking button
+      checkBtn.addEventListener("click", function () {
+
+        const name = nameInput.value.trim();
+        const Marks = Marks.value;
+
+        if (name === "" || Marks === "") {
+            result.innerText = "Enter your name and your marks.";
+            result.style.color = "red";
+
+        } else if (Marks < 49) {
+            result.innerText = name + ", waa dhacday.";
+            result.style.color = "orange";
+
+        } else if (Marks >= 50 && Marks < 100) {
+            result.innerText = name + ", you pass.";
+            result.style.color = "green";
+
+        } 
+    });
+    </script>
+    
+</body>
+<script src="assigment.js"></script>
+</html>

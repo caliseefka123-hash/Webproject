@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM & Events Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>checking marks</h2>
+
+   
+    <input type="text" id="nameInput" placeholder="Enter your name">
+
+
+    <input type="number" id="ageInput" placeholder="Enter your marks">
+
+   
+    <button id="checkBtn">Check Status</button>
+
+  
+    <div id="result"></div>
+</div>
+
+<script>
+    // Access DOM elements
+    const nameInput = document.getElementById("nameInput");
+    const Marks = document.getElementById("marksInput");
+    const checkBtn = document.getElementById("checkBtn");
+    const result = document.getElementById("result");
+
+    // Button click event
+    checkBtn.addEventListener("click", function () {
+
+        const name = nameInput.value.trim();
+        const Marks = Marks.value;
+
+        if (name === "" || Marks === "") {
+            result.innerText = "Enter your name and your marks.";
+            result.style.color = "red";
+
+        } else if (Marks < 49) {
+            result.innerText = name + ", waa dhacday.";
+            result.style.color = "orange";
+
+        } else if (Marks >= 50 && Marks < 100) {
+            result.innerText = name + ", you pass.";
+            result.style.color = "green";
+
+        } 
+    });
+</script>
+
+</body>
+</html>
