@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Result Calculator System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+        }
+
+        .container {
+            width: 360px;
+            margin: 60px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 12px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #084298;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Student Result Calculator</h1>
+
+    <label>Student Name</label>
+    <input type="text" id="name" placeholder="Enter student name">
+
+    <label>Math Marks</label>
+    <input type="number" id="math" placeholder="0 - 100">
+
+    <label>English Marks</label>
+    <input type="number" id="english" placeholder="0 - 100">
+
+    <label>Science Marks</label>
+    <input type="number" id="science" placeholder="0 - 100">
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function calculateResult() {
+    let name = document.getElementById("name").value.trim();
+    let math = document.getElementById("math").value;
+    let english = document.getElementById("english").value;
+    let science = document.getElementById("science").value;
+    let result = document.getElementById("result");
+
+    // ✅ Student Name: letters only (no numbers)
+    let nameRegex = /^[A-Za-z\s]+$/;
+
+    if (name === "") {
+        result.style.color = "red";
+        result.innerHTML = "❌ Student name is required";
+        return;
+    }
+
+    if (!nameRegex.test(name)) {
+        result.style.color = "red";
+        result.innerHTML = "❌ Student name must contain letters only";
+        return;
+    }
+
+    if (math === "" || english === "" || science === "") {
+        result.style.color = "red";
+        result.innerHTML = "❌ Please fill all marks";
+        return;
+    }
+
+    math = Number(math);
+    english = Number(english);
+    science = Number(science);
+
+    if (
+        math < 0 || math > 100 ||
+        english < 0 || english > 100 ||
+        science < 0 || science > 100
+    ) {
+        result.style.color = "red";
+        result.innerHTML = "❌ Marks must be between 0 and 100";
+        return;
+    }
+
+    let marks = [math, english, science];
+    let total = 0;
+
+    for (let m of marks) {
+        total += m;
+    }
+
+    let average = total / marks.length;
+    let grade = "";
+
+    if (average >= 80) grade = "A";
+    else if (average >= 60) grade = "B";
+    else if (average >= 50) grade = "C";
+    else grade = "Fail";
+
+    result.style.color = "green";
+    result.innerHTML = `
+        Name: ${name} <br>
+        Total Marks: ${total} <br>
+        Average: ${average.toFixed(2)} <br>
+        Grade: ${grade}
+    `;
+}
+</script>
+
+</body>
+</html>
